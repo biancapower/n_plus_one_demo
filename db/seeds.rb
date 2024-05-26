@@ -7,3 +7,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Book.destroy_all
+Genre.destroy_all
+
+genres = 10.times.map { |i| Genre.create!(name: Faker::Book.unique.genre) }
+
+100.times do
+  Book.create!(title: Faker::Book.title, genre: genres.sample)
+end
